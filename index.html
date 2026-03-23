@@ -317,7 +317,7 @@
       <h1 style="font-family:'Lora',serif;font-size:22px;font-weight:500;">This week</h1>
       <div style="display:flex;gap:8px;">
         <button class="btn" onclick="clearPlan()">Clear plan</button>
-        <button class="btn primary" onclick="showView('shopping')">Shopping list â†’</button>
+        <button class="btn primary" onclick="showView('shopping')">Shopping list &#8594;</button>
       </div>
     </div>
     <div class="week-grid" id="week-grid"></div>
@@ -366,7 +366,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; State &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 let recipes = [];
 let mealPlan = {};
 let extras = [];
@@ -381,7 +381,7 @@ function setSyncDot(state) {
   d.className = 'sync-dot ' + state;
 }
 
-// â”€â”€ Firestore listeners â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Firestore listeners &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 onSnapshot(collection(db, 'recipes'), snap => {
   recipes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
   renderRecipes();
@@ -400,19 +400,19 @@ onSnapshot(doc(db, 'app', 'shopping'), snap => {
   renderShopping();
 });
 
-// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Helpers &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function avgR(r) { if (!r.ratings || !r.ratings.length) return null; return r.ratings.reduce((a,b)=>a+b.taste,0)/r.ratings.length; }
 
 function starsHTML(val, sm) {
   let s = '';
-  for (let i = 1; i <= 5; i++) s += `<span class="star${i<=Math.round(val)?' filled':''}" style="font-size:${sm?12:14}px;">â˜…</span>`;
+  for (let i = 1; i <= 5; i++) s += `<span class="star${i<=Math.round(val)?' filled':''}" style="font-size:${sm?12:14}px;">&#9733;</span>`;
   return `<span class="stars">${s}<span style="font-size:11px;color:var(--ink-light);margin-left:4px;">${val.toFixed(1)}</span></span>`;
 }
 
 function starsInputHTML(name, val) {
   let s = '';
-  for (let i = 1; i <= 5; i++) s += `<span class="star star-input${i<=val?' filled':''}" onclick="setStar('${name}',${i})">â˜…</span>`;
+  for (let i = 1; i <= 5; i++) s += `<span class="star star-input${i<=val?' filled':''}" onclick="setStar('${name}',${i})">&#9733;</span>`;
   return `<span class="stars" id="stars-${name}">${s}</span>`;
 }
 
@@ -421,7 +421,7 @@ window.setStar = (name, n) => {
   document.querySelectorAll(`#stars-${name} .star`).forEach((s,i) => s.classList.toggle('filled', i < n));
 };
 
-// â”€â”€ Views â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Views &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 window.showView = (n) => {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -437,7 +437,7 @@ window.setFilter = (f, btn) => {
   renderRecipes();
 };
 
-// â”€â”€ Recipes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Recipes &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function renderRecipes() {
   const grid = document.getElementById('recipe-grid');
   const q = (document.getElementById('search-input')?.value || '').toLowerCase();
@@ -447,7 +447,7 @@ function renderRecipes() {
     return true;
   });
   if (!list.length) {
-    grid.innerHTML = `<div class="empty"><div class="icon">ðŸ³</div><p>${recipes.length ? 'No recipes match your search.' : 'No recipes yet â€” add one to get started.'}</p></div>`;
+    grid.innerHTML = `<div class="empty"><div class="icon">&#x1F373;</div><p>${recipes.length ? 'No recipes match your search.' : 'No recipes yet 2014 add one to get started.'}</p></div>`;
     return;
   }
   grid.innerHTML = list.map(r => {
@@ -465,14 +465,14 @@ function renderRecipes() {
   }).join('');
 }
 
-// â”€â”€ Add / Edit Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Add / Edit Modal &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 window.openAddModal = () => {
   tagBuf = []; tasteStar = 0; diffStar = 0;
   showModal(`
-    <button class="modal-close" onclick="closeModal()">Ã—</button>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
     <h2>Add recipe</h2>
     <div class="import-box">
-      <p>Import from a website â€” paste a recipe URL and Claude will extract it automatically.</p>
+      <p>Import from a website \u2014 paste a recipe URL and Claude will extract it automatically.</p>
       <div class="import-row">
         <input type="text" id="import-url" placeholder="https://www.taste.com.au/recipes/..." />
         <button class="btn primary" onclick="importFromUrl()" id="import-btn">Import</button>
@@ -506,7 +506,7 @@ function recipeFormHTML(r) {
     </div>
     <div class="field"><label>Tags</label>
       <div class="chip-input" onclick="document.getElementById('tag-text').focus()">
-        <span id="tag-chips">${tagBuf.map((t,i)=>`<span class="chip">${esc(t)}<button onclick="rmTag(${i})">Ã—</button></span>`).join('')}</span>
+        <span id="tag-chips">${tagBuf.map((t,i)=>`<span class="chip">${esc(t)}<button onclick="rmTag(${i})">&times;</button></span>`).join('')}</span>
         <input type="text" id="tag-text" placeholder="Type + Enter" onkeydown="handleTag(event)" style="border:none;outline:none;background:transparent;padding:2px 4px;font-size:13px;min-width:80px;" />
       </div>
     </div>
@@ -526,7 +526,7 @@ window.handleTag = (e) => {
 };
 function renderTagChips() {
   const el = document.getElementById('tag-chips');
-  if (el) el.innerHTML = tagBuf.map((t,i)=>`<span class="chip">${esc(t)}<button onclick="rmTag(${i})">Ã—</button></span>`).join('');
+  if (el) el.innerHTML = tagBuf.map((t,i)=>`<span class="chip">${esc(t)}<button onclick="rmTag(${i})">&times;</button></span>`).join('');
 }
 window.rmTag = (i) => { tagBuf.splice(i,1); renderTagChips(); };
 
@@ -535,7 +535,7 @@ window.importFromUrl = async () => {
   if (!url) { showStatus('Please enter a URL.', 'error'); return; }
   const btn = document.getElementById('import-btn');
   btn.disabled = true; btn.textContent = 'Importing...';
-  showStatus('Fetching and parsing the recipe â€” this takes about 10 seconds...', 'loading');
+  showStatus('Fetching and parsing the recipe \u2014 this takes about 10 seconds...', 'loading');
   try {
     const res = await fetch('https://recipe-importer.tdharris2019.workers.dev/', {
       method: 'POST',
@@ -589,13 +589,13 @@ window.openRecipe = (id) => {
   const avg = avgR(r);
   const diffAvg = r.ratings?.length ? r.ratings.reduce((a,b)=>a+b.difficulty,0)/r.ratings.length : null;
   showModal(`
-    <button class="modal-close" onclick="closeModal()">Ã—</button>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
     <h2>${esc(r.name)}</h2>
     <div class="detail-meta">
       ${r.time ? `<span>${r.time} min</span>` : ''}
       ${r.servings ? `<span>${r.servings} servings</span>` : ''}
       ${r.difficulty ? `<span class="badge ${r.difficulty}">${r.difficulty}</span>` : ''}
-      ${r.source ? `<a href="${esc(r.source)}" class="source-link" target="_blank">â†— Source</a>` : ''}
+      ${r.source ? `<a href="${esc(r.source)}" class="source-link" target="_blank">&#8599; Source</a>` : ''}
     </div>
     ${(r.tags||[]).length ? `<div class="tags" style="margin-bottom:1rem;">${r.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
     <div class="tabs">
@@ -611,7 +611,7 @@ window.openRecipe = (id) => {
           <button class="btn sm" onclick="openEdit('${id}')">Edit</button>
           <button class="btn sm danger" onclick="deleteRecipe('${id}')">Delete</button>
         </div>
-        <button class="btn primary sm" onclick="closeModal();showView('mealplan');setTimeout(()=>{const s=document.getElementById('plan-recipe');if(s)s.value='${id}';},100)">Add to meal plan â†’</button>
+        <button class="btn primary sm" onclick="closeModal();showView('mealplan');setTimeout(()=>{const s=document.getElementById('plan-recipe');if(s)s.value='${id}';},100)">Add to meal plan &#8594;</button>
       </div>
     </div>
     <div id="tab-rat" style="display:none;">
@@ -626,7 +626,7 @@ window.openRecipe = (id) => {
       <p style="font-size:13px;font-weight:500;margin-bottom:10px;">Leave a rating</p>
       <div class="field"><label>Your name</label><input id="rev-name" placeholder="e.g. Bridget" /></div>
       <div class="row">
-        <div class="field"><label>Taste (1â€“5 â˜…)</label>${starsInputHTML('taste', 0)}</div>
+        <div class="field"><label>Taste (1&ndash;5 &#9733;)</label>${starsInputHTML('taste', 0)}</div>
         <div class="field"><label>Difficulty (1=easy, 5=hard)</label>${starsInputHTML('diff', 0)}</div>
       </div>
       <div class="field"><label>Comment (optional)</label><textarea id="rev-comment" style="min-height:70px;" placeholder="What did the family think?"></textarea></div>
@@ -667,7 +667,7 @@ window.openEdit = (id) => {
   tagBuf = [...(r.tags||[])];
   closeModal();
   showModal(`
-    <button class="modal-close" onclick="closeModal()">Ã—</button>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
     <h2>Edit recipe</h2>
     ${recipeFormHTML(r)}
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:1rem;">
@@ -695,13 +695,13 @@ window.deleteRecipe = async (id) => {
   closeModal();
 };
 
-// â”€â”€ Meal Plan â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Meal Plan &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function renderMealPlan() {
   document.getElementById('week-grid').innerHTML = DAYS.map(d => {
     const meals = mealPlan[d] || [];
     return `<div class="day-col"><h4>${d}</h4>${meals.map((m,i)=>`
       <div class="day-meal">
-        <button class="rm" onclick="removeMeal('${d}',${i})">Ã—</button>
+        <button class="rm" onclick="removeMeal('${d}',${i})">&times;</button>
         <div class="meal-type">${esc(m.t)}</div>
         <div class="meal-name">${esc(m.n)}</div>
       </div>`).join('')}</div>`;
@@ -739,14 +739,14 @@ window.clearPlan = async () => {
   await setDoc(doc(db, 'app', 'mealplan'), { plan: {} });
 };
 
-// â”€â”€ Shopping â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Shopping &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function renderShopping() {
   const el = document.getElementById('shopping-content'); if (!el) return;
   const ids = [...new Set(Object.values(mealPlan).flat().map(m=>m.id))];
   const planRecipes = ids.map(id=>recipes.find(r=>r.id===id)).filter(Boolean);
 
   if (!planRecipes.length && !extras.length) {
-    el.innerHTML = '<div class="empty"><div class="icon">ðŸ›’</div><p>Add recipes to your meal plan to generate a shopping list.</p></div>';
+    el.innerHTML = '<div class="empty"><div class="icon">&#x1F6D2;</div><p>Add recipes to your meal plan to generate a shopping list.</p></div>';
     return;
   }
 
@@ -812,7 +812,7 @@ window.rmExtra = async (i) => {
   await setDoc(doc(db, 'app', 'shopping'), { extras: newExtras, checked });
 };
 
-// â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// &#9472;&#9472; Modal &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 window.showModal = (html) => {
   document.getElementById('modal-root').innerHTML = `<div class="modal-overlay" onclick="if(event.target.classList.contains('modal-overlay'))closeModal()"><div class="modal">${html}</div></div>`;
 };
