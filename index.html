@@ -386,6 +386,7 @@ onSnapshot(collection(db, 'recipes'), snap => {
   recipes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
   renderRecipes();
   syncPlanSelect();
+  renderShopping();
   setSyncDot('ok');
 });
 
@@ -397,6 +398,7 @@ onSnapshot(doc(db, 'app', 'mealplan'), snap => {
 
 onSnapshot(doc(db, 'app', 'shopping'), snap => {
   if (snap.exists()) { extras = snap.data().extras || []; checked = snap.data().checked || []; }
+  else { extras = []; checked = []; }
   renderShopping();
 });
 
@@ -447,7 +449,7 @@ function renderRecipes() {
     return true;
   });
   if (!list.length) {
-    grid.innerHTML = `<div class="empty"><div class="icon">&#x1F373;</div><p>${recipes.length ? 'No recipes match your search.' : 'No recipes yet 2014 add one to get started.'}</p></div>`;
+    grid.innerHTML = `<div class="empty"><div class="icon">&#x1F373;</div><p>${recipes.length ? 'No recipes match your search.' : 'No recipes yet &mdash; add one to get started.'}</p></div>`;
     return;
   }
   grid.innerHTML = list.map(r => {
@@ -472,7 +474,7 @@ window.openAddModal = () => {
     <button class="modal-close" onclick="closeModal()">&times;</button>
     <h2>Add recipe</h2>
     <div class="import-box">
-      <p>Import from a website \u2014 paste a recipe URL and Claude will extract it automatically.</p>
+      <p>Import from a website &mdash; paste a recipe URL and Claude will extract it automatically.</p>
       <div class="import-row">
         <input type="text" id="import-url" placeholder="https://www.taste.com.au/recipes/..." />
         <button class="btn primary" onclick="importFromUrl()" id="import-btn">Import</button>
@@ -535,7 +537,7 @@ window.importFromUrl = async () => {
   if (!url) { showStatus('Please enter a URL.', 'error'); return; }
   const btn = document.getElementById('import-btn');
   btn.disabled = true; btn.textContent = 'Importing...';
-  showStatus('Fetching and parsing the recipe \u2014 this takes about 10 seconds...', 'loading');
+  showStatus('Fetching and parsing the recipe &mdash; this takes about 10 seconds...', 'loading');
   try {
     const res = await fetch('https://recipe-importer.tdharris2019.workers.dev/', {
       method: 'POST',
@@ -759,8 +761,8 @@ function renderShopping() {
     }));
     const items = Object.values(seen);
     html += `<div class="shopping-section"><h3>From meal plan (${items.length} items)</h3>
-      ${items.map(item => {
-        const key = 'i-' + btoa(encodeURIComponent(item.text.slice(0,30))).replace(/[^a-zA-Z0-9]/g,'').slice(0,18);
+      ${items.map((item, idx) => {
+        const key = 'i-' + idx;
         const chk = checked.includes(key);
         return `<div class="shop-item ${chk?'checked':''}" id="si-${key}">
           <input type="checkbox" ${chk?'checked':''} onchange="toggleCheck('${key}')" id="cb-${key}">
